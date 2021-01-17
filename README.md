@@ -1,7 +1,7 @@
 Acknowledgment 
     I am pleased to acknowledge Prof. Keith O’Hara for his invaluable guidance during the course of this project work. Samuel Furr was also instrumental in this project as he had some key insights. 
     
-December, 2020
+December, 2020 
 
    The program utilizes Kotlin to create an interpreter for lisp. On a fundamental level, the interpreter takes in a program, breaks the program into tokens, parses the tokens giving us an AST, evaluates the AST, and finally prints a result.
 
