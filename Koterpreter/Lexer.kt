@@ -1,7 +1,6 @@
 fun read(token: MutableList < String > ): Pair < Any, TokenType > {
     //Assigns a type to the input depending on what the input starts with
     val pop = token.removeAt(0)
-    // if you see a ' then it is a list
     if (pop.startsWith("'")) {
         return read(token) to TokenType.LIST
     }
@@ -14,7 +13,6 @@ fun read(token: MutableList < String > ): Pair < Any, TokenType > {
         token.removeAt(0)
         return Mlist to TokenType.EXPR
     }
-    // If you see " the it is a string
     if (pop.startsWith("\"")) {
         return pop to TokenType.STRING
     } else {
@@ -26,7 +24,6 @@ fun read(token: MutableList < String > ): Pair < Any, TokenType > {
         }
     }
 }
-//Pretty straightforward. Just cleans up the string recived and makes the string a list
 fun tokenize(s: String): MutableList < String > {
     return s.replace("(", " ( ").replace(")", " ) ").split(" ").filter {
         it != ""
