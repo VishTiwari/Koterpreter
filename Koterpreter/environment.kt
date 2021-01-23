@@ -18,7 +18,6 @@
             (input[0] as List < * > )[0]
     },
     //try (cdr (cons 13 4))
-    //Give us back a list without the first thing
     "cdr"
     to {
         input: List < Any > ->
@@ -28,7 +27,6 @@
     to {
         input: List < Any > ->
         var sum = input[0] as Double
-        //Common technique on stack overflow to iterate through a list in Kotlin. Save the first value and drop it while adding the rest of the values to it
         var droppedList = input.drop(1)
         droppedList.forEach {
             sum = sum.plus(it as Double)
@@ -38,7 +36,6 @@
     "-"
     to {
         input: List < Any > ->
-        //Same technique as before but with subtraction
         var sub = input[0] as Double
         var droppedList = input.drop(1)
         droppedList.forEach {
@@ -49,7 +46,6 @@
     "*"
     to {
         input: List < Any > ->
-        // .times, .minus etc are build in operations for mutable maps
           var mul = input[0] as Double
         var droppedList = input.drop(1)
         droppedList.forEach {
@@ -60,8 +56,7 @@
     "/"
     to {
         input: List < Any > ->
-        //Even works with division 
-        var div = input[0] as Double
+\        var div = input[0] as Double
         var droppedList = input.drop(1)
         droppedList.forEach {
             div = div.div(it as Double)
