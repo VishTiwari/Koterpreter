@@ -13,7 +13,6 @@
 (cdr (cons 13 4))
 (modulo 13 4) */
 
-//Program starts here
 fun main() {
     repl()
 }
@@ -31,7 +30,6 @@ fun repl() {
             "Vish says stop" -> go = false 
             else -> {
                println(read(tokenize(read)) as Pair < Any, TokenType >)
-           //I prefered avoiding the "hacky" parser and having the string be read and parsed below
                 println(listCheck(eval(read(tokenize(read)) as Pair < Any, TokenType >))) 
                 println()
                 read
@@ -40,9 +38,9 @@ fun repl() {
     }
 }
 fun listCheck(evalResult: Any): String {
-  //So this will print the list out with parens. '*' is just saying you can have any type of list similar to 'Any' but with '*' you can only have one datatype in the list after it has been inputted. It will not allow for a list of strings and integers.   
+  /*So this will print the list out with parens. '*' is just saying you can have any type of list similar to 'Any' but with '*' you can
+  only have one datatype in the list after it has been inputted. It will not allow for a list of strings and integers. */
     return if (evalResult is List < * > ) {
-            //joinToString() can take specified parameters to change a string!
             evalResult.joinToString(prefix = "(", postfix = ")")
         } else {
             evalResult.toString()
