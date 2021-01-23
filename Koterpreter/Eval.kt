@@ -1,5 +1,5 @@
 fun eval(accessPair: Pair < Any, TokenType > , env: MutableMap < String, Any > = global_env): Any {
-  //If the tokentype is LIST then just return the list. This type of checking will be used throughout eval. 
+  //If the tokentype is LIST then just return the list.
     if (accessPair.second.equals(TokenType.LIST)) {
         return accessPair.first
     }
@@ -9,15 +9,11 @@ fun eval(accessPair: Pair < Any, TokenType > , env: MutableMap < String, Any > =
                 var check = exp[0]
             // try (define a 5) 
             // then (display a)
-            //Quite similar to Norvig's python. 
             if (check.first.equals("define")) {
                 val(_, argument, body) = exp
-                //If it is arguments are just a symbol then save it in the environment as a string 
                 if(argument.second.equals(TokenType.SYMBOL)) {
                      env[argument.first as String] = eval(body, env)
                 }
-                //Otherwise chop it into names and parameters.
-                //Eventually it will be a procedure 
                 if(argument.second.equals(TokenType.EXPR)) {
                         val name = (argument.first as List < Pair < Any, TokenType >> )[0].first as String
                         val parms = (argument.first as List < Pair < Any, TokenType >> ).drop(1)
@@ -67,7 +63,6 @@ fun eval(accessPair: Pair < Any, TokenType > , env: MutableMap < String, Any > =
             // try (if (> 3 2) "yes" "no") 
             if (check.first.equals("if")) {
                 val(_, test, conseq, alt) = exp
-                //if the statement is true execute that conseq or else execute the else part  
                 val exp = if (eval(test, env) as Boolean) conseq else alt
                 return eval(exp, env)
             }
@@ -106,7 +101,6 @@ fun eval(accessPair: Pair < Any, TokenType > , env: MutableMap < String, Any > =
                 }
                 return proc(args)
             }
-           //first check if our input has already been defined
             if (check.first in env) {
                 val args = exp.drop(1).map {
                     eval(it, env)
@@ -125,7 +119,6 @@ fun eval(accessPair: Pair < Any, TokenType > , env: MutableMap < String, Any > =
 
     //STRINGS, SYMBOLS, and NUMBERS are the easy cases to handle.
     if (accessPair.second.equals(TokenType.STRING)) {
-      //Note: I think Lispy2 has a more sophisticated way to handle stings but for now our stings are pretty much one word long with no whitespace. 
         return accessPair.first
     }
     if (accessPair.second.equals(TokenType.SYMBOL)) {
