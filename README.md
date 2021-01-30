@@ -19,7 +19,7 @@ Scope for further investigation:
 - Implement lazy eval
 - Implement continuations
 - Look into implementing lispy2 
-http://norvig.com/lispy2.html
+http://norvig.com/lispy2.html 
 
 
 
